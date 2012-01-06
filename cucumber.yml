@@ -1,0 +1,4 @@
+---
+default: --profile html_report
+html_report: --format progress
+wip: --tags @wip
