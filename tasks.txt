@@ -1,0 +1,12 @@
+size name
+--  ---------------------------------------------
+1   set up a bare git repo
+1   set up rvmrc
+1   set up rake
+1   set up gemfile
+1   setup cucumber
+1   setup rspec
+1   set up rvmrc
+1   add notes.txt with thoughts
+2   think and create actual stories
+1   add a README.markdown to show to run
