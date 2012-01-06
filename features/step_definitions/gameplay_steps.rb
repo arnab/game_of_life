@@ -1,5 +1,5 @@
 def game
-  @game ||= GameOfLife::Game.new(GameOfLife::Outputters::SimpleStringOutputter)
+  @game ||= GameOfLife::Game.new(GameOfLife::Inputters::SimpleStringInputter, GameOfLife::Outputters::SimpleStringOutputter)
 end
 
 Given /^that the game is seeded with:$/ do |raw_input|

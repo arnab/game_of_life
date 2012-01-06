@@ -1,13 +1,16 @@
 module GameOfLife
   class Game
+    attr_accessor :inputter
     attr_accessor :outputter
     # the Game Board
     attr_reader :board
 
     # Creates the game.
+    # @param [InPutter] the inputter that you want to use
     # @param [OutPutter] the outputter that you want to use
     # @example GameOfLife::Game.new(GameOfLife::Outputters::SimpleStringOutputter)
-    def initialize(outputter)
+    def initialize(inputter, outputter)
+      @inputter = inputter.new
       @outputter = outputter.new
     end
 
@@ -15,7 +18,7 @@ module GameOfLife
     # @todo Perhaps there is opportunity to create different kinds of inputters that will do the parsing
     #   and this class will use that as a template, instead of trying to parse it itself.
     def seed(raw_input)
-      @board = Board.new(self, parse(raw_input))
+      @board = Board.new(self, inputter.parse(raw_input))
     end
 
     # The event by which the board transitions from the current to the next generation/state
@@ -23,23 +26,5 @@ module GameOfLife
       
     end
 
-    private
-      def parse(input)
-        rows = input.split("\n")
-        rows.map! { |row| row.split(' ') }
-        rows.map! do |row|
-          row.map! { |symbol| convert_cryptic_symbol_to_state(symbol) }
-        end
-        rows
-      end
-
-      def convert_cryptic_symbol_to_state(symbol)
-        case symbol
-        when 'X'
-          :live
-        when '-'
-          :dead
-        end
-      end
   end
 end

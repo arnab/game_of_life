@@ -14,7 +14,8 @@ Top level namespace (module). Has the following things:
 * has a grid (2d array) of Cells
 * checks integrety after every tick, like:
   - is it a filled shape (orthogonal square)?  
-  - anything out of bound? or should that be inside the Cell
+  - we don't do any bounds check as we try not to have our API dictate the client to pass in a bound and then data
+  - as long as the board's shape is good and every cell is filled, we are fine
 
 #### Cell
 * x, y - coordinates (positive integers)
