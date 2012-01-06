@@ -20,6 +20,6 @@ size  status    name
 1     done      an outputter to produce console like output
 2               cucumber features for various scenarios
 1     done      inputter also as a template, like outputter
-1               integrity check of board
+1     done      integrity check of board
 1               complete README
 1               complete documentation
