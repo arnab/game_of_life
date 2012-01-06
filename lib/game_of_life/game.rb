@@ -25,7 +25,21 @@ module GameOfLife
 
     private
       def parse(input)
-      
+        rows = input.split("\n")
+        rows.map! { |row| row.split(' ') }
+        rows.map! do |row|
+          row.map! { |symbol| convert_cryptic_symbol_to_state(symbol) }
+        end
+        rows
+      end
+
+      def convert_cryptic_symbol_to_state(symbol)
+        case symbol
+        when 'X'
+          :live
+        when '-'
+          :dead
+        end
       end
   end
 end

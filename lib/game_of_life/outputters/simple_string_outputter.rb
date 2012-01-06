@@ -11,7 +11,16 @@ module GameOfLife
       # @param [GameOfLife::Board] board the given board
       # @return [String] the board rendered as a string
       def render(board)
-        board.inspect
+        output = ""
+        board.each_row do |row|
+          row.each do |cell|
+            output << cell.cryptic_state
+            output << " "
+          end
+          output.strip!
+          output << "\n"
+        end
+        output.chomp
       end
     end
   end
