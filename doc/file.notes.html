@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: notes
+  
+    &mdash; Game Of Life Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: notes</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><p>These are basically just my raw thoughts about the game.</p>
+
+<h1>Objects</h1>
+
+<h2>GameOfLife</h2>
+
+<p>Top level namespace (module). Has the following things:</p>
+
+<h3>Game</h3>
+
+<ul>
+<li>incorporates rules</li>
+<li>gets the input (<em>seed</em>)</li>
+<li>and waits for <em>tick</em>s</li>
+</ul>
+
+<h3>Board</h3>
+
+<ul>
+<li>has a grid (2d array) of Cells</li>
+<li>checks integrety after every tick, like:
+
+<ul>
+<li>is it a filled shape (orthogonal square)?<br></li>
+<li>anything out of bound? or should that be inside the Cell</li>
+</ul></li>
+</ul>
+
+<h4>Cell</h4>
+
+<ul>
+<li>x, y - coordinates (positive integers)</li>
+<li>state: :live or :dead
+
+<ul>
+<li>do we need a state machine or is a simple [:live, :dead].cycle enough for now?</li>
+</ul></li>
+<li>guards against out of bound type of problems</li>
+</ul>
+
+<h3>Rules</h3>
+
+<ul>
+<li>Any live cell with fewer than two live neighbours dies, as if by loneliness.</li>
+<li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+<li>Any live cell with two or three live neighbours lives, unchanged, to the next generation.</li>
+<li>Any dead cell with exactly three live neighbours comes to life.</li>
+</ul>
+
+<h3>Player</h3>
+
+<ul>
+<li>do we need one? there isn&#39;t really a real player, but we can assume one which just calls Game#tick *</li>
+</ul>
+
+<h1>Analysis</h1>
+
+<p>Space-complexity wise an infinite grid might be tricky because each tick results in a board which is a pure function of the previous state of the board. In other words, if it&#39;s really infinite, or very large, it will be impossible to copy the board before every manipulation. Three options that I can see (following discussions assume there are (n x n) <em>Cell</em>s in the <em>Board</em>):</p>
+
+<ul>
+<li>Keep some sort of a has_changed signifier in each <em>Cell</em>. Instead of trying to change the state in-place, flip this boolean field. After all the <em>Cell</em>s have been touched, use this field to go through once more and flip the state if required.
+
+<ul>
+<li>This increases by the space required by O(n-squared * some-constant-amount-for-a-boolean), which is O(n-squared)</li>
+</ul></li>
+<li>Another simple optimization can be to go row-by-row. Every time we reach row n, where n &gt; 2, th (n-2)th row can be flushed (i.e. their state can be changed) since no <em>Cell</em> in (n-2) row can be n row&#39;s neighbor. This way only 2 rows need to copied in memory at a time.
+
+<ul>
+<li>This increases the space required by O(n). But if n is agan very large (and not n-squared) this will still not be efficient.</li>
+</ul></li>
+<li>A third approach could be to walk the <em>Board</em> in a radially outward manner, flushing the earliest-seen-<em>Cell</em>s as soon as we are in a neighborhood which is one row/column away from the first generation.
+
+<ul>
+<li>This would be very optimal but will be complicated to write. Is it worth it is the question.</li>
+</ul></li>
+</ul>
+
+<h2>Assumptions and Conslusions</h2>
+
+<p>Given all these considerations and reassurance from my recruiter that we are looking for a <em>simple</em> OO Design I am not going to attempt any of these alternatives. Instead I&#39;ll copy the board in memory during the <em>tick</em>.</p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Fri Jan  6 03:56:58 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
