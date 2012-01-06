@@ -7,6 +7,6 @@ size  status    name
 1     done      setup cucumber
 1     done      setup rspec
 1     done      set up yard
-1               add notes.txt with thoughts
+1     done      add notes.txt with thoughts
 2               think and create actual stories
 1               add a README.markdown to show to run
