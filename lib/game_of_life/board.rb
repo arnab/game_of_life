@@ -29,6 +29,36 @@ module GameOfLife
       @cells.each { |row| yield row }
     end
 
+    def each_cell(&block)
+      @cells.flatten.each { |cell| yield cell }
+    end
+
+    # Find the cell at a given pair of co-ordinates. Following Array symantics,
+    # this method returns nil if nothing exists at that location or if the
+    # location is out of the board. To avoid {Array} negative index symantics it
+    # returns nill if a negative index is passed.
+    # @param [Integer] x the x-coordinate
+    # @param [Integer] y the y-coordinate
+    # @return [Cell] or nil
+    def cell_at(x, y)
+      return nil if (x < 0 || y < 0)
+      @cells[x][y] if @cells[x]
+    end
+
+    # Finds the neighbors of a given {Cell}. The neighbors are the eight cells
+    # that surround the given one.
+    # @param [Cell] cell the cell you find the neighbors of
+    # @return [Array<Cell>]
+    def neighbors_of(cell)
+      neighbors = coords_of_neighbors(cell.x, cell.y).map { |x, y| self.cell_at(x, y) }
+      neighbors.reject {|n| n.nil?}
+    end
+
+    def mark_and_sweep_for_next_generation!
+      mark_changes_for_next_generation
+      sweep_changes_for_next_generation!
+    end
+
     private
       def validate_seed_data(seed_data)
         rows_found = seed_data.size
@@ -47,7 +77,8 @@ module GameOfLife
 
         elements_found = seed_data.flatten.reject {|d| d.nil? }.size
         unless (rows_found ** 2) == elements_found
-          msg = "Not all elements are filled with valid data."
+          msg = "Not a square shape (total elements: #{elements_found}, rows: #{rows_found})" +
+            "Probably not all elements are filled with valid data."
           fail_with(seed_data, msg)
         end
       end
@@ -64,6 +95,39 @@ module GameOfLife
             @cells[x] << Cell.new(state, y, x)
           end
         end
+      end
+
+      def mark_changes_for_next_generation
+        self.each_cell do |cell|
+          cell.should_live_in_next_generation =
+            Rules.should_cell_live?(self, cell)
+        end
+      end
+
+      def sweep_changes_for_next_generation!
+        self.each_cell { |cell| cell.change_state_if_needed! }
+      end
+
+      # Calculates the co-ordinates of neighbors of a given pair of co-ordinates
+      # @param [Integer] x the x-coordinate
+      # @param [Integer] y the y-coordinate
+      # @return [Array<Integer, Integer>] the list of neighboring co-ordinates
+      # @example
+      #   coords_of_neighbors(1,1) =>
+      #     [
+      #       [0, 0], [0, 1], [0, 2],
+      #       [1, 0],         [1, 2],
+      #       [2, 0], [2, 1], [2, 2],
+      #     ]
+      def coords_of_neighbors(x, y)
+        coords_of_neighbors = []
+        (x - 1).upto(x + 1).each do |neighbors_x|
+          (y - 1).upto(y + 1).each do |neighbors_y|
+            next if (x == neighbors_x) && (y == neighbors_y)
+            coords_of_neighbors << [neighbors_x, neighbors_y]
+          end
+        end
+        coords_of_neighbors
       end
   end
 end

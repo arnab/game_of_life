@@ -23,7 +23,7 @@ module GameOfLife
 
     # The event by which the board transitions from the current to the next generation/state
     def tick
-      
+      @board.mark_and_sweep_for_next_generation!
     end
 
   end
