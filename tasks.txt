@@ -21,7 +21,7 @@ size  status    name
 2     done      cucumber features for various scenarios
 1     done      inputter also as a template, like outputter
 1     done      integrity check of board
-1               grid can be rectangular, not necessarily square
+1     done      grid can be rectangular, not necessarily square
 2               implement self-replication (add the neighboring row/columns and clean up if needed)
 2               add a CLI so we can do file input and test that way
 1               complete README

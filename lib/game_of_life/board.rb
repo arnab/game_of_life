@@ -76,14 +76,10 @@ module GameOfLife
         end
 
         columns_found = columns_in_each_row.uniq.first
-        unless rows_found == columns_found
-          msg = "Number of rows [#{rows_found}] != number of columns [#{columns_found}]"
-          fail_with(seed_data, msg)
-        end
-
         elements_found = seed_data.flatten.reject {|d| d.nil? }.size
-        unless (rows_found ** 2) == elements_found
-          msg = "Not a square shape (total elements: #{elements_found}, rows: #{rows_found})" +
+        unless (rows_found * columns_found) == elements_found
+          msg = "Not a rectangular shape: " +
+            "rows(#{rows_found}) x columns(#{columns_found}) != total elements(#{elements_found})]"
             "Probably not all elements are filled with valid data."
           fail_with(seed_data, msg)
         end

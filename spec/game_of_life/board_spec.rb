@@ -19,23 +19,23 @@ module GameOfLife
           }.to raise_error ArgumentError, /unequal number of columns/i
       end
 
-      it "should raise Error when number of rows do not equal number of columns" do
-        seed_data = [
-          [:live, :dead, :live],
-          [:live, :dead, :live]
-        ]
-        expect {
-          Board.new(game, seed_data)
-          }.to raise_error ArgumentError, /number of rows.*!= number of columns/i
-        end
-
       it "should raise Error when not all elements are present (i.e. some are nil)" do
         seed_data = [
           [:live, :dead], [:dead, nil]
         ]
         expect {
           Board.new(game, seed_data)
-          }.to raise_error ArgumentError, /not all elements are filled/i
+          }.to raise_error ArgumentError
+      end
+
+      it "should NOT raise Error when rows != columns, but is a rectangular shape" do
+        seed_data = [
+          [:live, :dead, :live],
+          [:live, :dead, :live]
+        ]
+        expect {
+          Board.new(game, seed_data)
+        }.to_not raise_error ArgumentError
       end
 
     end
