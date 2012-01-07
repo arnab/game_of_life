@@ -1,4 +1,4 @@
-These are basically just my raw thoughts about the game.
+These are basically just my raw thoughts about the game. See my updates from 1/7 Saturday.
 
 # Objects
 
@@ -30,7 +30,7 @@ Top level namespace (module). Has the following things:
 * Any dead cell with exactly three live neighbours comes to life.
 
 ### Player
-* do we need one? there isn't really a real player, but we can assume one which just calls Game#tick *
+* do we need one? there isn't really a real player, but we can assume one which seeds and then observes the Game#ticks *
 
 # Analysis
 Space-complexity wise an infinite grid might be tricky because each tick results in a board which is a pure function of the previous state of the board. In other words, if it's really infinite, or very large, it will be impossible to copy the board before every manipulation. Three options that I can see (following discussions assume there are (n x n) *Cell*s in the *Board*):
@@ -44,3 +44,11 @@ Space-complexity wise an infinite grid might be tricky because each tick results
 
 ## Assumptions and Conslusions
 Given all these considerations and reassurance from my recruiter that we are looking for a *simple* OO Design I am not going with alternative 1: mark and sweep (instead of duplicating the data on every tick).
+
+# Updates
+## 1/7 Saturday
+So it turns out some of my assumptions were wrong. Given the `X` and `-` markings in the example for live and dead cells I thought that once seeded the size of th board was constant. It dawns on me now that that the "infiniteness" of the board plays on every tick/generation change. Basically, `X` are live cells but everything else (in all directions) is dead (the ones inside the playing area are marked explicity with a `-`). So we'll need some changes, but that's why software is designed with principles of design in mind. Let's see how our code adpats.
+
+I am going to continue and complete the mark-and-sweep part. That will get scenario C passing. To tackle Scenario D (Toad, which changes the size of the board) as the first pas, we can implement the  [self-constructing pattern][1], basically create a new geneation of cells and kill the old one. I suspect it won't perform optimally (given we are using a 2D array) but we can leave the optimization for later (perhaps a 2D LinkedList will fare better).
+
+[1]: http://en.wikipedia.org/wiki/Conway's_Game_of_Life#Self-replication

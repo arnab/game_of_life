@@ -8,18 +8,22 @@ size  status    name
 1     done      setup rspec
 1     done      set up yard
 1     done      add notes.txt with thoughts
-2     done      think and create actual stories
+2     done      think and create actual stories *
 1     done      add a README.markdown to show to run
 
-* Stories that came out of the thinking
+* Stories that came out of the thinking story above
 2     done      cucumber features for first scenarios
 2     done      implementation of game using the strategy/template pattern to take an outputter
 2     done      seeding the board
 3               calculate the next state of the board after a tick
 1               set the next state as calculated above
 1     done      an outputter to produce console like output
-2               cucumber features for various scenarios
+2     done      cucumber features for various scenarios
 1     done      inputter also as a template, like outputter
 1     done      integrity check of board
+1               grid can be rectangular, not necessarily square
+2               implement self-replication (add the neighboring row/columns and clean up if needed)
+2               add a CLI so we can do file input and test that way
 1               complete README
 1               complete documentation
+1     done      clarify Toad Pattern (D) with recruiter
