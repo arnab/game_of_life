@@ -15,8 +15,8 @@ size  status    name
 2     done      cucumber features for first scenarios
 2     done      implementation of game using the strategy/template pattern to take an outputter
 2     done      seeding the board
-3               calculate the next state of the board after a tick
-1               set the next state as calculated above
+3     done      calculate the next state of the board after a tick
+1     done      set the next state as calculated above
 1     done      an outputter to produce console like output
 2     done      cucumber features for various scenarios
 1     done      inputter also as a template, like outputter

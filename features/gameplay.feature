@@ -16,8 +16,6 @@ Feature: Gameplay of the Game of Life
     X X
     """
 
-
-
   Scenario: B: Boat pattern
     Given that the game is seeded with:
     """
@@ -32,8 +30,6 @@ Feature: Gameplay of the Game of Life
     X - X
     - X -
     """
-
-
 
   Scenario: C: Blinker pattern
     Given that the game is seeded with:
