@@ -60,12 +60,13 @@ module GameOfLife
       @cells[y][x] if @cells[y]
     end
 
-    # Finds the neighbors of a given {Cell}. The neighbors are the eight cells
+    # Finds the neighbors of a given {Cell}'s co-ordinates. The neighbors are the eight cells
     # that surround the given one.
-    # @param [Cell] cell the cell you find the neighbors of
+    # @param [Integer] x the x-coordinate of the cell you find the neighbors of
+    # @param [Integer] y the y-coordinate of the cell you find the neighbors of
     # @return [Array<Cell>]
-    def neighbors_of(cell)
-      neighbors = coords_of_neighbors(cell.x, cell.y).map { |x, y| self.cell_at(x, y) }
+    def neighbors_of_cell_at(x, y)
+      neighbors = coords_of_neighbors(x, y).map { |x, y| self.cell_at(x, y) }
       neighbors.reject {|n| n.nil?}
     end
 
@@ -114,15 +115,19 @@ module GameOfLife
         data.each_with_index do |row, y|
           @cells << []
           row.each_with_index do |state, x|
-            @cells[y] << Cell.new(x, y, state)
+            @cells[y] << Cell.new(state)
           end
         end
       end
 
       def mark_changes_for_next_generation
-        self.each_cell do |cell|
-          cell.should_live_in_next_generation =
-            Rules.should_cell_live?(self, cell)
+        y = 0
+        self.each_row do |cells|
+          cells.each_with_index do |cell, x|
+            cell.should_live_in_next_generation =
+              Rules.should_cell_live?(self, cell, x, y)
+          end
+          y += 1
         end
       end
 

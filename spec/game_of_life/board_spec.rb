@@ -57,23 +57,19 @@ module GameOfLife
       }
 
       it "should return 3 neighbors for the cell at (0,0)" do
-        cell = Board::Cell.new(0, 0, :live)
-        board.neighbors_of(cell).should have(3).items
+        board.neighbors_of_cell_at(0, 0).should have(3).items
       end
 
       it "should return 3 neighbors for the cell at (2,2)" do
-        cell = Board::Cell.new(2, 2, :live)
-        board.neighbors_of(cell).should have(3).items
+        board.neighbors_of_cell_at(2, 2).should have(3).items
       end
 
       it "should return 5 neighbors for the cell at (1,0)" do
-        cell = Board::Cell.new(1, 0, :live)
-        board.neighbors_of(cell).should have(5).items
+        board.neighbors_of_cell_at(1, 0).should have(5).items
       end
 
       it "should return 8 neighbors for the cell at (1,1)" do
-        cell = Board::Cell.new(1, 1, :live)
-        board.neighbors_of(cell).should have(8).items
+        board.neighbors_of_cell_at(1, 1).should have(8).items
       end
     end
   end
