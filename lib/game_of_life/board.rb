@@ -41,7 +41,7 @@ module GameOfLife
 
     # Find the cell at a given pair of co-ordinates. Following Array symantics,
     # this method returns nil if nothing exists at that location or if the
-    # location is out of the board. To avoid {Array} negative index symantics it
+    # location is out of the board. To avoid Array's negative index symantics it
     # returns nill if a negative index is passed.
     # @param [Integer] x the x-coordinate
     # @param [Integer] y the y-coordinate

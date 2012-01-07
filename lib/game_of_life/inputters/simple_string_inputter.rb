@@ -1,10 +1,10 @@
 module GameOfLife
-  # Inputters can parse various kinds of data into a format that is easily converted to {Board}'s {Cell}s. Some forms of possible inputters:
+  # Inputters can parse various kinds of data into a format that is easily converted to {Board}'s {Board::Cell Cell}s. Some forms of possible inputters:
   #   JSONInputter would accept JSON objects (which can be posted by a website for example)
   #   SimpleStringInputter can be used by tests to verify results
   #   FileInputter can read files in a given format
   module Inputters
-    # parses an input {String} for the board data
+    # parses an input string for the board data
     class SimpleStringInputter
       # Parses board's data from a string.
       # @example Will parse this input string
