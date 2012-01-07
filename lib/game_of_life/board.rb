@@ -3,8 +3,14 @@ module GameOfLife
   class Board
     # The {Game} to which this board belongs
     attr_reader :game
+
     # The {Cell}s in this board,internally maintained as a 2D Array of {Cell}s.
-    # Use {#each_cell}, {#each_row} etc. methods to access the cells indivisually.
+    # The x-coordinate increases horizontally and is always positive.
+    # The y-coordinate increases vertically and is always positive.
+    # Internally, the cells are arranged as a 2D array. The first-level Array indexed
+    # with the y-coordinates. It contains an Array of {Cell}s, whose position is
+    # the x-coordinate.
+    # @note Use {#each_cell}, {#each_row} etc. methods to access the cells individually.
     attr_reader :cells
 
     # Creates the board
@@ -89,10 +95,10 @@ module GameOfLife
       end
 
       def seed_with!(data)
-        data.each_with_index do |row, x|
+        data.each_with_index do |row, y|
           @cells << []
-          row.each_with_index do |state, y|
-            @cells[x] << Cell.new(state, y, x)
+          row.each_with_index do |state, x|
+            @cells[y] << Cell.new(state, x, y)
           end
         end
       end
