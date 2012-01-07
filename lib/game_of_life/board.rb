@@ -42,7 +42,7 @@ module GameOfLife
     # @return [Cell] or nil
     def cell_at(x, y)
       return nil if (x < 0 || y < 0)
-      @cells[x][y] if @cells[x]
+      @cells[y][x] if @cells[y]
     end
 
     # Finds the neighbors of a given {Cell}. The neighbors are the eight cells
