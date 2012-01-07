@@ -16,7 +16,7 @@ module GameOfLife
         ]
         expect {
           Board.new(game, seed_data)
-          }.to_not raise_error InvalidBoardError, /unequal number of columns/i
+          }.to raise_error InvalidBoardError, /unequal number of columns/i
       end
 
       it "should NOT raise Error when rows != columns, but is a rectangular shape" do
