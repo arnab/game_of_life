@@ -1,4 +1,4 @@
 ---
 default: --profile sane
-sane: --format pretty
+sane: --format pretty --tags ~@wip
 wip: --tags @wip
