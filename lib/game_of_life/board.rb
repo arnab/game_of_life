@@ -98,7 +98,7 @@ module GameOfLife
         data.each_with_index do |row, y|
           @cells << []
           row.each_with_index do |state, x|
-            @cells[y] << Cell.new(state, x, y)
+            @cells[y] << Cell.new(x, y, state)
           end
         end
       end
