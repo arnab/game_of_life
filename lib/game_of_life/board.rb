@@ -60,9 +60,26 @@ module GameOfLife
       neighbors.reject {|n| n.nil?}
     end
 
+    # This is the first stage in a Game's #tick.
+    # @see Game#tick
+    def reformat_for_next_generation!
+      # insert an empty array at the top and bottom
+    end
+
+    # Goes through each {Cell} and marks it (using {Rules}) to signal it's state for the next
+    # generation. This prevents modifying any {Cell} in-place as each generation is a pure
+    # function of the previous. Once all {Cell}s are marked, it sweeps across them gets them
+    # to change their state if they were marked to.
+    # @see #mark_changes_for_next_generation
+    # @see #sweep_changes_for_next_generation!
     def mark_and_sweep_for_next_generation!
       mark_changes_for_next_generation
       sweep_changes_for_next_generation!
+    end
+
+    # This is the third and last stage in a Game's #tick.
+    # @see Game#tick
+    def shed_dead_weight!
     end
 
     private
@@ -131,5 +148,6 @@ module GameOfLife
         end
         coords_of_neighbors
       end
+
   end
 end
