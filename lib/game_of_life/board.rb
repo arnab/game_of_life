@@ -1,6 +1,10 @@
 module GameOfLife
+  # Raised when a {Board} gets into an invalid shape
+  class InvalidBoardError < RuntimeError; end;
+
   # The board used in the game. Holds the {Cell}s.
   class Board
+
     # The {Game} to which this board belongs
     attr_reader :game
 
@@ -18,13 +22,18 @@ module GameOfLife
     # @param [2D Array<Symbol>] seed_data the data for the {Cell}s in the board, as an 2D array.
     # @example seed_data looks like
     #   the output of SimpleStringInputter#parse
-    # @raise [ArgumentError] if the seed_data is not in the shape of a square,
+    # @raise [InvalidBoardError] if the seed_data is not in the shape of a square,
     #   or if all elements are not present
     def initialize(game, seed_data)
-      validate_seed_data(seed_data)
       @game = game
       @cells = Array.new(Array.new)
       seed_with!(seed_data)
+      begin
+        validate
+      rescue InvalidBoardError => ex
+        # Add the seed_data into the error message, so the caller gets a clue
+        raise InvalidBoardError, ex.message + " [seed data was: #{seed_data.inspect}]"
+      end
     end
 
     def view
@@ -83,28 +92,22 @@ module GameOfLife
     end
 
     private
-      def validate_seed_data(seed_data)
-        rows_found = seed_data.size
-
-        columns_in_each_row = seed_data.map(&:size)
+      def validate
+        num_o_rows = @cells.size
+        columns_in_each_row = @cells.map(&:size)
         unless columns_in_each_row.uniq.size == 1
           msg = "Unequal number of columns, #{columns_in_each_row.inspect} in different rows found"
-          fail_with(seed_data, msg)
+          raise InvalidBoardError, msg
         end
 
-        columns_found = columns_in_each_row.uniq.first
-        elements_found = seed_data.flatten.reject {|d| d.nil? }.size
-        unless (rows_found * columns_found) == elements_found
+        num_o_columns = columns_in_each_row.uniq.first
+        num_o_elements = @cells.flatten.reject {|d| d.nil? }.size
+        unless (num_o_rows * num_o_columns) == num_o_elements
           msg = "Not a rectangular shape: " +
-            "rows(#{rows_found}) x columns(#{columns_found}) != total elements(#{elements_found})]"
+            "rows(#{num_o_rows}) x columns(#{num_o_columns}) != total elements(#{num_o_elements})]"
             "Probably not all elements are filled with valid data."
-          fail_with(seed_data, msg)
+          raise InvalidBoardError, msg
         end
-      end
-
-      def fail_with(message, seed_data)
-        raise ArgumentError, "Cannot create a board with seed_data: #{seed_data.inspect}" +
-        "(Reason: #{message})"
       end
 
       def seed_with!(data)

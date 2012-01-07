@@ -16,16 +16,7 @@ module GameOfLife
         ]
         expect {
           Board.new(game, seed_data)
-          }.to raise_error ArgumentError, /unequal number of columns/i
-      end
-
-      it "should raise Error when not all elements are present (i.e. some are nil)" do
-        seed_data = [
-          [:live, :dead], [:dead, nil]
-        ]
-        expect {
-          Board.new(game, seed_data)
-          }.to raise_error ArgumentError
+          }.to_not raise_error InvalidBoardError, /unequal number of columns/i
       end
 
       it "should NOT raise Error when rows != columns, but is a rectangular shape" do
@@ -35,7 +26,7 @@ module GameOfLife
         ]
         expect {
           Board.new(game, seed_data)
-        }.to_not raise_error ArgumentError
+        }.to_not raise_error InvalidBoardError
       end
 
     end
