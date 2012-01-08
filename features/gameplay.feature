@@ -46,7 +46,6 @@ Feature: Gameplay of the Game of Life
     - - -
     """
 
-@wip
   Scenario: D: Toad pattern
     Given that the game is seeded with:
     """

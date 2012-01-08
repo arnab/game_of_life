@@ -73,7 +73,19 @@ module GameOfLife
     # This is the first stage in a Game's #tick.
     # @see Game#tick
     def reformat_for_next_generation!
-      # insert an empty array at the top and bottom
+      # create an array of dead cells and insert it as the first and last row of cells
+      dead_cells = (1..@cells.first.size).map { Cell.new }
+      @cells.unshift Marshal.load(Marshal.dump(dead_cells))
+      @cells.push Marshal.load(Marshal.dump(dead_cells))
+
+      # also insert a dead cell at the left and right of each row
+      @cells.each do |row|
+        row.unshift Cell.new
+        row.push Cell.new
+      end
+
+      # validate to see if we broke the board
+      validate
     end
 
     # Goes through each {Cell} and marks it (using {Rules}) to signal it's state for the next
@@ -90,6 +102,23 @@ module GameOfLife
     # This is the third and last stage in a Game's #tick.
     # @see Game#tick
     def shed_dead_weight!
+      # Remove the first and last rows if all cells are dead
+      @cells.shift if @cells.first.all? { |cell| cell.dead? }
+      @cells.pop if @cells.last.all? { |cell| cell.dead? }
+
+      # Remove the first cell of every row, if they are all dead
+      first_columns = @cells.map { |row| row.first }
+      if first_columns.all? { |cell| cell.dead? }
+        @cells.each { |row| row.shift }
+      end
+
+      # Remove the last cell of every row, if they are all dead
+      last_columns = @cells.map { |row| row.last }
+      if last_columns.all? { |cell| cell.dead? }
+        @cells.each { |row| row.pop }
+      end
+
+      validate
     end
 
     private

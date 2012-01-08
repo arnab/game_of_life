@@ -19,6 +19,14 @@ module GameOfLife
         end
       end
 
+      def alive?
+        state == :live
+      end
+
+      def dead?
+        ! alive?
+      end
+
       def cryptic_state
         case state
         when :live
@@ -29,8 +37,9 @@ module GameOfLife
       end
 
       def to_s
-        important_details = %w{state should_live_in_next_generation}.map {|attr| "#{attr}:#{self.send(attr)}"}
-        "#{super} [#{important_details.join(' ')}]"
+        fields = %w{state should_live_in_next_generation}
+        important_details = fields.map {|attr| "#{attr}:#{self.send(attr)}"}
+        "#{super} <#{important_details.join(' ')}>"
       end
     end
   end

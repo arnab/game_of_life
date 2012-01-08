@@ -23,6 +23,9 @@ size  status    name
 1     done      integrity check of board
 1     done      grid can be rectangular, not necessarily square
 2               implement self-replication (add the neighboring row/columns and clean up if needed)
+1               board should use outputter only in view
+1               board should use inputter only in parse
+1               board should not hold on to a game
 2               add a CLI so we can do file input and test that way
 1               complete README
 1               complete documentation
