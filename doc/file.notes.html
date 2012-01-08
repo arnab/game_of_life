@@ -68,6 +68,7 @@
 <li>incorporates rules</li>
 <li>gets the input (<em>seed</em>)</li>
 <li>and waits for <em>tick</em>s</li>
+<li>@see the Game class&#39; #tick documentation for more details</li>
 </ul>
 
 <h3>Board</h3>
@@ -77,7 +78,7 @@
 <li>checks integrety after every tick, like:
 
 <ul>
-<li>is it a filled shape (orthogonal square)?<br></li>
+<li>is it a filled shape (rectangular)?</li>
 <li>we don&#39;t do any bounds check as we try not to have our API dictate the client to pass in a bound and then data</li>
 <li>as long as the board&#39;s shape is good and every cell is filled, we are fine</li>
 </ul></li>
@@ -86,13 +87,7 @@
 <h4>Cell</h4>
 
 <ul>
-<li>x, y - coordinates (positive integers)</li>
-<li>state: :live or :dead
-
-<ul>
-<li>do we need a state machine or is a simple [:live, :dead].cycle enough for now?</li>
-</ul></li>
-<li>guards against out of bound type of problems</li>
+<li>state: :live or :dead</li>
 </ul>
 
 <h3>Rules</h3>
@@ -146,7 +141,7 @@
 </div></div>
     
     <div id="footer">
-  Generated on Sat Jan  7 16:54:23 2012 by 
+  Generated on Sat Jan  7 17:28:12 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.4 (ruby-1.9.2).
 </div>

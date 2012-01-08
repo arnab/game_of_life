@@ -130,8 +130,7 @@ module GameOfLife
         num_o_elements = @cells.flatten.reject {|d| d.nil? }.size
         unless (num_o_rows * num_o_columns) == num_o_elements
           msg = "Not a rectangular shape: " +
-            "rows(#{num_o_rows}) x columns(#{num_o_columns}) != total elements(#{num_o_elements})]"
-            "Probably not all elements are filled with valid data."
+            "rows(#{num_o_rows}) x columns(#{num_o_columns}) != total elements(#{num_o_elements})]. "
           raise InvalidBoardError, msg
         end
       end

@@ -9,3 +9,7 @@ See the ***notes*** file for details about my thoughts.
 
 # How to play
 * Run the cucumber steps to see examples.
+* You can play with the code with the simple script provided:
+`
+./scripts/play_game.rb examples/pulsar.txt
+`
