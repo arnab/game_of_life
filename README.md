@@ -13,6 +13,7 @@ See the ***notes*** file for details about my thoughts.
 `
 ./scripts/play_game.rb examples/pulsar.txt
 `
+
 # Documentation
-* Generate the yar dpcumentation by running: `yarddoc server --reload` (you need to follow the setup before this).
+* Generate the yar dpcumentation by running: `yard server --reload` (you need to follow the setup before this).
 * Then you can see it at http://localhost:8808/
