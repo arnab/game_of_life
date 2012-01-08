@@ -1,22 +1,17 @@
 module GameOfLife
   class Game
-    attr_accessor :inputter
-    attr_accessor :outputter
     # the Game Board
     attr_reader :board
 
-    # Creates the game.
-    # @param [InPutter] the inputter that you want to use
-    # @param [OutPutter] the outputter that you want to use
-    # @example GameOfLife::Game.new(GameOfLife::Outputters::SimpleStringOutputter)
-    def initialize(inputter, outputter)
-      @inputter = inputter.new
-      @outputter = outputter.new
-    end
-
-    # Takes the raw input data and parses that into a Board
-    def seed(raw_input)
-      @board = Board.new(self, inputter.parse(raw_input))
+    # Takes the formatted input data and seeds the {Board} with it
+    # @param [string] formatted_input
+    # @example
+    #   [
+    #     [:dead, :live, :live, :live],
+    #     [:live, :live, nil,   :dead]
+    #   ]
+    def seed(formatted_input)
+      @board = Board.new(formatted_input)
     end
 
     # The event by which the board transitions from the current to the next generation/state.

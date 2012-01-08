@@ -1,9 +1,10 @@
 def game
-  @game ||= GameOfLife::Game.new(GameOfLife::Inputters::SimpleStringInputter, GameOfLife::Outputters::SimpleStringOutputter)
+  @game ||= GameOfLife::Game.new
 end
 
 Given /^that the game is seeded with:$/ do |raw_input|
-  game.seed(raw_input)
+  formatted_seed_data = GameOfLife::Inputters::SimpleStringInputter.new.parse raw_input
+  game.seed(formatted_seed_data)
 end
 
 When /^the next tick occurs$/ do

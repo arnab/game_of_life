@@ -2,20 +2,13 @@ require "spec_helper"
 
 module GameOfLife
   describe Board do
-    let(:game) {
-      GameOfLife::Game.new(
-        GameOfLife::Inputters::SimpleStringInputter,
-        GameOfLife::Outputters::SimpleStringOutputter
-        )
-    }
-
     describe "#initialize" do
       it "should raise Error when seed data contains unequal number of fields across rows" do
         seed_data = [
           [:live, :dead], [:live, :dead, :live]
         ]
         expect {
-          Board.new(game, seed_data)
+          Board.new(seed_data)
           }.to raise_error InvalidBoardError, /unequal number of columns/i
       end
 
@@ -25,7 +18,7 @@ module GameOfLife
           [:live, :dead, :live]
         ]
         expect {
-          Board.new(game, seed_data)
+          Board.new(seed_data)
         }.to_not raise_error InvalidBoardError
       end
 
@@ -33,7 +26,7 @@ module GameOfLife
 
     describe "#cell_at" do
       let(:board) {
-        Board.new(game,[
+        Board.new([
           [ :live, :live ],
           [ :live, :live ],
         ])
@@ -49,7 +42,7 @@ module GameOfLife
 
     describe "#neighbors_of" do
       let(:board) {
-        Board.new(game,[
+        Board.new([
           [ :live, :live, :live ],
           [ :live, :live, :live ],
           [ :live, :live, :live ],

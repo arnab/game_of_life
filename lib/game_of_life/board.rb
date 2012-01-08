@@ -5,9 +5,6 @@ module GameOfLife
   # The board used in the game. Holds the {Cell}s.
   class Board
 
-    # The {Game} to which this board belongs
-    attr_reader :game
-
     # The {Cell}s in this board,internally maintained as a 2D Array of {Cell}s.
     # The x-coordinate increases horizontally and is always positive.
     # The y-coordinate increases vertically and is always positive.
@@ -18,14 +15,12 @@ module GameOfLife
     attr_reader :cells
 
     # Creates the board
-    # @param [Game] game the game to which this board belongs.
     # @param [2D Array<Symbol>] seed_data the data for the {Cell}s in the board, as an 2D array.
     # @example seed_data looks like
     #   the output of SimpleStringInputter#parse
     # @raise [InvalidBoardError] if the seed_data is not in the shape of a square,
     #   or if all elements are not present
-    def initialize(game, seed_data)
-      @game = game
+    def initialize(seed_data)
       @cells = Array.new(Array.new)
       seed_with!(seed_data)
       begin
@@ -36,8 +31,9 @@ module GameOfLife
       end
     end
 
-    def view
-      game.outputter.render(self)
+    # @param [OutPutter] the outputter that you want to use. Defaults to {Outputters::SimpleStringOutputter}
+    def view(outputter = Outputters::SimpleStringOutputter.new)
+      outputter.render(self)
     end
 
     def each_row(&block)

@@ -21,12 +21,13 @@ size  status    name
 2     done      cucumber features for various scenarios
 1     done      inputter also as a template, like outputter
 1     done      integrity check of board
+1     done      clarify Toad Pattern (D) with recruiter
 1     done      grid can be rectangular, not necessarily square
-2               implement self-replication (add the neighboring row/columns and clean up if needed)
-1               board should use outputter only in view
-1               board should use inputter only in parse
-1               board should not hold on to a game
+2     done      implement self-replication (add the neighboring row/columns and clean up if needed)
+1     done      board should use outputter only in view
+1     done      board should use inputter only in parse
+1     done      board should not hold on to a game
 2               add a CLI so we can do file input and test that way
+1               some cucumber steps with multiple ticks
 1               complete README
 1               complete documentation
-1     done      clarify Toad Pattern (D) with recruiter
