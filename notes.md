@@ -9,19 +9,17 @@ Top level namespace (module). Has the following things:
 * incorporates rules
 * gets the input (*seed*)
 * and waits for *tick*s
+* @see the Game class' #tick documentation for more details
 
 ### Board
 * has a grid (2d array) of Cells
 * checks integrety after every tick, like:
-  - is it a filled shape (orthogonal square)?  
+  - is it a filled shape (rectangular)?
   - we don't do any bounds check as we try not to have our API dictate the client to pass in a bound and then data
   - as long as the board's shape is good and every cell is filled, we are fine
 
 #### Cell
-* x, y - coordinates (positive integers)
 * state: :live or :dead
-  - do we need a state machine or is a simple [:live, :dead].cycle enough for now?
-* guards against out of bound type of problems
 
 ### Rules
 * Any live cell with fewer than two live neighbours dies, as if by loneliness.

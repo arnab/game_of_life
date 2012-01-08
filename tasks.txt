@@ -28,6 +28,6 @@ size  status    name
 1     done      board should use inputter only in parse
 1     done      board should not hold on to a game
 2               add a CLI so we can do file input and test that way
-1               some cucumber steps with multiple ticks
-1               complete README
-1               complete documentation
+1     done      some cucumber steps with multiple ticks
+1     done      complete README
+1     done      complete documentation
