@@ -1,5 +1,5 @@
 # Conway's Game of Life, in Ruby
-![Build Status](https://secure.travis-ci.org/arnab/game_of_life.png?branch=master)
+[![Build Status](https://secure.travis-ci.org/arnab/game_of_life.png?branch=master)][travis]
 [travis]: http://travis-ci.org/arnab/game_of_life
 
 ## About
@@ -20,7 +20,7 @@ See the [notes file](https://github.com/arnab/game_of_life/blob/master/notes.md)
 
 ## Documentation
 ### Hosted
-* Available at [http://rubydoc.info/github/arnab/game\_of\_life/](http://rubydoc.info/github/arnab/game_of_life/)
+* Available at [http://rubydoc.info/github/arnab/game_of_life/](http://rubydoc.info/github/arnab/game_of_life/)
 
 ### Build your own
 * Follow setup steps above if you have not already
