@@ -8,4 +8,4 @@ RSpec::Core::RakeTask.new
 Cucumber::Rake::Task.new
 
 task :test => [:spec, :cucumber]
-task :default => [:test, :yard]
+task :default => :test

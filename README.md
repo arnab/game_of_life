@@ -33,11 +33,9 @@ See the [notes file](https://github.com/arnab/game_of_life/blob/master/notes.md)
 * Ruby 1.8.7
 * Ruby 1.9.2
 * Ruby 1.9.3
-* [JRuby][]
 * [Rubinius][]
 * [Ruby Enterprise Edition][ree]
 
-[jruby]: http://www.jruby.org/
 [rubinius]: http://rubini.us/
 [ree]: http://www.rubyenterpriseedition.com/
 
