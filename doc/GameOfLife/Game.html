@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: GameOfLife::Game
+  
+    &mdash; Game Of Life Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (G)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../GameOfLife.html" title="GameOfLife (module)">GameOfLife</a></span></span>
+     &raquo; 
+    <span class="title">Game</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: GameOfLife::Game
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">GameOfLife::Game</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/game_of_life/game.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#board-instance_method" title="#board (instance method)">- (Object) <strong>board</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+the Game Board.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#seed-instance_method" title="#seed (instance method)">- (Object) <strong>seed</strong>(formatted_input) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Takes the formatted input data and seeds the <span class='object_link'><a href="Board.html" title="GameOfLife::Board (class)">Board</a></span> with it.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tick-instance_method" title="#tick (instance method)">- (Object) <strong>tick</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The event by which the board transitions from the current to the next
+generation/state.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="board-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="board-instance_method">
+  
+    - (<tt>Object</tt>) <strong>board</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+the Game Board
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/game_of_life/game.rb', line 4</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_board'>board</span>
+  <span class='ivar'>@board</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="seed-instance_method">
+  
+    - (<tt>Object</tt>) <strong>seed</strong>(formatted_input) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Takes the formatted input data and seeds the <span class='object_link'><a href="Board.html" title="GameOfLife::Board (class)">Board</a></span> with it
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='lbracket'>[</span>
+  <span class='lbracket'>[</span><span class='symbol'>:dead</span><span class='comma'>,</span> <span class='symbol'>:live</span><span class='comma'>,</span> <span class='symbol'>:live</span><span class='comma'>,</span> <span class='symbol'>:live</span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='symbol'>:live</span><span class='comma'>,</span> <span class='symbol'>:live</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span>   <span class='symbol'>:dead</span><span class='rbracket'>]</span>
+<span class='rbracket'>]</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>formatted_input</span>
+      
+      
+        <span class='type'>(<tt>string</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/game_of_life/game.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_seed'>seed</span><span class='lparen'>(</span><span class='id identifier rubyid_formatted_input'>formatted_input</span><span class='rparen'>)</span>
+  <span class='ivar'>@board</span> <span class='op'>=</span> <span class='const'>Board</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_formatted_input'>formatted_input</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="tick-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tick</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The event by which the board transitions from the current to the next
+generation/state. There are three stages in the process:
+</p>
+<ul>
+<li><p>
+reformat the board: Each tick can make the neighboring dead cells (which
+are not technically in the board now) cells alive. So reformat the board to
+add a new row at the top and bottom an a column at the left and right (all
+dead cells)
+</p>
+</li>
+<li><p>
+mark and sweep for the next generation
+</p>
+</li>
+<li><p>
+shed the dead weight: In stage 1, we added a layer of dead cells around the
+current board. If the whole layer is still dead, just remove it as we
+don&#8217;t want to keep adding layers of dead weight on every tick.
+</p>
+</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Board.html#mark_and_sweep_for_next_generation%21-instance_method" title="GameOfLife::Board#mark_and_sweep_for_next_generation! (method)">Board#mark_and_sweep_for_next_generation!</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/game_of_life/game.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tick'>tick</span>
+  <span class='ivar'>@board</span><span class='period'>.</span><span class='id identifier rubyid_reformat_for_next_generation!'>reformat_for_next_generation!</span>
+  <span class='ivar'>@board</span><span class='period'>.</span><span class='id identifier rubyid_mark_and_sweep_for_next_generation!'>mark_and_sweep_for_next_generation!</span>
+  <span class='ivar'>@board</span><span class='period'>.</span><span class='id identifier rubyid_shed_dead_weight!'>shed_dead_weight!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Jan  7 16:54:23 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
