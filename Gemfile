@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
-gem "ruby-debug19"
+gem "rake"
+# gem "ruby-debug19"
 
 group :test do
   gem "rspec"
