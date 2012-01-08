@@ -27,15 +27,6 @@ module GameOfLife
         ! alive?
       end
 
-      def cryptic_state
-        case state
-        when :live
-          'X'
-        when :dead
-          '-'
-        end
-      end
-
       def to_s
         fields = %w{state should_live_in_next_generation}
         important_details = fields.map {|attr| "#{attr}:#{self.send(attr)}"}

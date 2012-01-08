@@ -14,13 +14,23 @@ module GameOfLife
         output = ""
         board.each_row do |row|
           row.each do |cell|
-            output << cell.cryptic_state
+            output << simplified_state(cell.state)
             output << " "
           end
           output.strip!
           output << "\n"
         end
         output.chomp
+      end
+
+      private
+      def simplified_state(state)
+        case state
+        when :live
+          'X'
+        when :dead
+          '-'
+        end
       end
     end
   end

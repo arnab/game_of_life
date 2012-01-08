@@ -40,6 +40,10 @@ module GameOfLife
       @cells.each { |row| yield row }
     end
 
+    def each_row_with_index(&block)
+      @cells.each_with_index { |row, i| yield row, i }
+    end
+
     def each_cell(&block)
       @cells.flatten.each { |cell| yield cell }
     end
@@ -71,6 +75,7 @@ module GameOfLife
     def reformat_for_next_generation!
       # create an array of dead cells and insert it as the first and last row of cells
       dead_cells = (1..@cells.first.size).map { Cell.new }
+      # don't forget to deep copy the dead_cells
       @cells.unshift Marshal.load(Marshal.dump(dead_cells))
       @cells.push Marshal.load(Marshal.dump(dead_cells))
 
@@ -145,13 +150,11 @@ module GameOfLife
       end
 
       def mark_changes_for_next_generation
-        y = 0
-        self.each_row do |cells|
+        self.each_row_with_index do |cells, y|
           cells.each_with_index do |cell, x|
             cell.should_live_in_next_generation =
               Rules.should_cell_live?(self, cell, x, y)
           end
-          y += 1
         end
       end
 
@@ -159,7 +162,7 @@ module GameOfLife
         self.each_cell { |cell| cell.change_state_if_needed! }
       end
 
-      # Calculates the co-ordinates of neighbors of a given pair of co-ordinates
+      # Calculates the co-ordinates of neighbors of a given pair of co-ordinates.
       # @param [Integer] x the x-coordinate
       # @param [Integer] y the y-coordinate
       # @return [Array<Integer, Integer>] the list of neighboring co-ordinates
@@ -170,6 +173,9 @@ module GameOfLife
       #       [1, 0],         [1, 2],
       #       [2, 0], [2, 1], [2, 2],
       #     ]
+      # @note This method returns all possible co-ordinate pairs of neighbors,
+      #   so it can contain coordinates of cells not in the board, or negative ones.
+      # @see #neighbors_of_cell_at
       def coords_of_neighbors(x, y)
         coords_of_neighbors = []
         (x - 1).upto(x + 1).each do |neighbors_x|
