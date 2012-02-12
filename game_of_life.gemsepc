@@ -1,0 +1,24 @@
+# -*- encoding: utf-8 -*-
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'game_of_life/version'
+
+Gem::Specification.new do |s|
+  s.name        = "game_of_life"
+  s.version     = GameOfLife::VERSION
+  s.authors     = ["arnab (Arnab Deka)"]
+  s.email       = ["arnab.deka+game_of_life@gmail.com"]
+  s.homepage    = "https://github.com/arnab/game_of_life"
+  s.summary     = "Conway's Game of Life, in Ruby"
+  s.description = "A Ruby library that encaptulates the logic of the game"
+
+  s.require_paths = ["lib"]
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+
+  s.add_development_dependency("rake")
+  s.add_development_dependency("cucumber")
+  s.add_development_dependency("rspec",">=2.0.0")
+  s.add_development_dependency("yard")
+  s.add_development_dependency("redcarpet")
+end
