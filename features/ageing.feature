@@ -10,15 +10,15 @@ Feature: Aeging in Game of Life
 	X X
     """
     When the next tick occurs
-    When the next tick occurs
+    And the next tick occurs
     Then the board's state should change to:
     """
 	X X
 	X X
     """
     When the next tick occurs
-    When the next tick occurs
-    When the next tick occurs
+    And the next tick occurs
+    And the next tick occurs
     Then the board's state should change to:
     """
 	- -
